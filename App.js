@@ -7,6 +7,7 @@ import GameScreen from './screens/GameScreeen';
 import { SafeAreaView } from 'react-native';
 import GameOver from './screens/GameOver';
 export default function App() {
+  const [tries,settry]=useState(0);
   const [number,setnumer]=useState(null);
   const changescr=(number1)=>
   { setnumer(number1)};
@@ -14,13 +15,15 @@ export default function App() {
 const [gameover,setgameover]=useState(false)
 const gameHandler=(isOver)=>
 {
+  if(isOver==false)
+  setnumer(0);
   setgameover(isOver);
 }
   let screen=<StartScreen set={changescr}/>;
   if(number)
-  screen=<GameScreen gameHandler={gameHandler} number={number}/>
+  screen=<GameScreen settry={settry} tries={tries}  gameHandler={gameHandler} number={number}/>
   if(gameover)
-  screen=<GameOver/>
+  screen=<GameOver   gameHandler={gameHandler} tries={tries}/>
  
   return (
     <LinearGradient colors={['#72063c','#ddb52f']} style={styles.container}>

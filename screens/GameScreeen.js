@@ -2,10 +2,14 @@ import {Text, View, StyleSheet} from "react-native";
 import Title from "../components/Title";
 import Numbercontainer from "../components/Numbercontainer";
 import Primary from "../components/primaryButton";
+import { Entypo } from '@expo/vector-icons';
+import { AntDesign } from '@expo/vector-icons';
 import { useEffect, useState } from "react";
+let min = 1;
+let max = 100;
 const GameScreen = (props) => {
-    let min = 1;
-    let max = 100;
+   
+   
 
     const generateRandom = (min, max, exclude) => {
         const n = Math.floor(Math.random() * (max - min)) + min;
@@ -35,6 +39,8 @@ props.gameHandler(true);
         const newnguess= generateRandom(min,max,cururennumber);
         setcurrentnumer(newnguess);
 console.log(min,max);
+props.settry(props.tries+1);
+console.log(props);
     }
     return (
 
@@ -44,8 +50,8 @@ console.log(min,max);
             <Title>GUESS THE NUMBER</Title>
             <Numbercontainer>{cururennumber}</Numbercontainer>
             <View>
-                <Primary onPress={nextguesshandler.bind(this,'lower')}>-</Primary>
-                <Primary onPress={nextguesshandler.bind(this,'grater')}>+</Primary>
+                <Primary onPress={nextguesshandler.bind(this,'lower')}><Entypo name="minus" size={24} color="white" /></Primary>
+                <Primary onPress={nextguesshandler.bind(this,'grater')}><AntDesign name="plus" size={24} color="white" /></Primary>
             </View>
         </View>
 
